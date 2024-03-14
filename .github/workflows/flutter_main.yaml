@@ -1,0 +1,69 @@
+name: Flutter CI for main branch pull requests
+
+on:
+  push:
+    branches: ["main", "feature/**", "bug/**"]
+    paths-ignore:
+      - "**.md"
+      - ".git/"
+      - ".vscode/"
+  pull_request:
+    branches: ["main"]
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+    paths-ignore:
+      - "**.md"
+      - ".git/"
+      - ".vscode/"
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Setup FVM
+        uses: kuhnroyal/flutter-fvm-config-action@v1
+        id: fvm-config-action
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        id: setup-flutter
+        with:
+          flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+          channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
+          architecture: x64
+
+      - name: Install Dependencies
+        run: |
+          flutter config --no-analytics
+          flutter pub get
+
+      - name: Check Formatting
+        run: dart format . --set-exit-if-changed
+
+      - name: Checking the correctness of the build_runner build and localizations
+        run: |
+          dart run build_runner build --delete-conflicting-outputs --verbose
+          flutter pub run intl_utils:generate
+          git diff
+          git status --porcelain
+          git status --porcelain|wc -l
+          (( $(git status --porcelain|wc -l) == 0 )) || { echo >&2 "Some changes in generated files detected"; exit 1; }
+
+      - name: Analyze
+        run: flutter analyze . --fatal-infos
+
+      # - name: Run tests
+      #   run: flutter test --reporter github
+
+      - name: Build PWA
+        run: |
+          flutter build web --dart-define "ENVIRONMENT=PRODUCTION" --web-renderer skwasm --pwa-strategy offline-first --base-href / --release

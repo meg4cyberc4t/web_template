@@ -1,0 +1,9 @@
+version: 2
+enable-beta-ecosystems: true
+updates:
+  - package-ecosystem: "pub"
+    rebase-strategy: auto
+    open-pull-requests-limit: 5
+    directory: "/"
+    schedule:
+      interval: "weekly"
