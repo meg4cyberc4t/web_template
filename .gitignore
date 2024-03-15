@@ -27,5 +27,8 @@ doc/api/
 .flutter-plugins-dependencies
 
 # FVM Version Cache
-.fvm/
-!.fvm/fvm_config.json
+.fvm/flutter_sdk
+.fvm/release
+.fvm/version
+.fvm/stable
+.fvm/versions
