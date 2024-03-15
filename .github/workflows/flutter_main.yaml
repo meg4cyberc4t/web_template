@@ -62,13 +62,7 @@ jobs:
         run: flutter analyze . --fatal-infos
 
       - name: Run tests
-        run: flutter test --machine | tojunit -o report.xml
-
-      - name: Publish test reports
-        uses: mikepenz/action-junit-report@v4
-        if: success() || failure()
-        with:
-          report_paths: "**/report.xml"
+        run: flutter test --reporter github
 
       - name: Build PWA
         run: |
