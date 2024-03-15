@@ -2,7 +2,7 @@ name: Flutter CI for main branch pull requests
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "feature/**", "bug/**"]
     paths-ignore:
       - "**.md"
       - ".git/"
