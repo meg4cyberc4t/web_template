@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Production WebAssembly",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      "toolArgs": [
+        "--dart-define",
+        "ENVIRONMENT=PRODUCTION",
+        "--web-renderer",
+        "skwasm"
+      ]
+    },
+
+    {
+      "name": "Development WebAssembly",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      "toolArgs": [
+        "--dart-define",
+        "ENVIRONMENT=DEVELOPMENT",
+        "--web-renderer",
+        "skwasm"
+      ]
+    }
+  ]
+}
