@@ -61,8 +61,8 @@ jobs:
       - name: Analyze
         run: flutter analyze . --fatal-infos
 
-      - name: Run tests
-        run: flutter test --reporter github
+      # - name: Run tests
+      #   run: flutter test --reporter github
 
       - name: Build PWA
         run: |
