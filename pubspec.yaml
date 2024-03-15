@@ -10,13 +10,33 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.6
+  octopus: ^0.0.8
+  logging: ^1.2.0
+  bloc: ^8.1.3
+  flutter_secure_storage: ^9.0.0
+  package_info_plus: ^5.0.1
+  meta: ^1.11.0
+  web: ^0.4.2
+  freezed_annotation: ^2.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  build_runner: ^2.4.8
+  intl_utils: ^2.8.7
+  freezed: ^2.4.7
 
 flutter:
   uses-material-design: true
+
+flutter_intl:
+  enabled: true
+  class_name: GeneratedLocalization
+  main_locale: en
+  arb_dir: lib/src/common/localizations
+  output_dir: lib/src/common/localizations/generated
+  use_deferred_loading: false
