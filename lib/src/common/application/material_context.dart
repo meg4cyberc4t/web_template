@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:web_template/src/common/environment/environment_store.dart';
 import 'package:web_template/src/common/localizations/localizations_state_mixin.dart';
 import 'package:web_template/src/common/navigation/router_state_mixin.dart';
+import 'package:web_template/src/common/theme/theme_state_mixin.dart';
 import 'package:web_template/src/features/initialization/data/dependencies.dart';
 
 /// [MaterialContext] is an entry point to the material context.
@@ -16,7 +17,7 @@ class MaterialContext extends StatefulWidget {
 }
 
 class _MaterialContextState extends State<MaterialContext>
-    with RouterStateMixin, LocalizationsStateMixin {
+    with RouterStateMixin, LocalizationsStateMixin, ThemeStateMixin {
   late final IEnvironmentStore _environmentStore;
 
   @override
@@ -35,8 +36,8 @@ class _MaterialContextState extends State<MaterialContext>
         ),
         supportedLocales: localizationDelegate.supportedLocales,
         localizationsDelegates: localizationsDelegate,
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
+        theme: lightTheme,
+        darkTheme: darkTheme,
         builder: (final context, final child) {
           final MediaQueryData mediaQueryData = MediaQuery.of(context);
           return MediaQuery(
