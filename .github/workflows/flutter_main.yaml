@@ -66,4 +66,4 @@ jobs:
 
       - name: Build PWA
         run: |
-          flutter build web --dart-define "ENVIRONMENT=PRODUCTION" --web-renderer skwasm --pwa-strategy offline-first --base-href / --release
+          flutter build web --dart-define-from-file config/config_production.json --web-renderer skwasm --pwa-strategy offline-first --base-href /web_template/ --release
