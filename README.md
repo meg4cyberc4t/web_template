@@ -24,4 +24,4 @@ This library is open for issues and pull requests. If you have ideas for improve
 
 # License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the GNU GPL-3.0 - see the LICENSE.md file for details.
