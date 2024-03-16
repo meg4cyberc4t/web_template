@@ -27,9 +27,8 @@ void main([final List<String>? args]) {
   }
 
   final name = extractArg('--name');
-  final org = extractArg('--organization');
   final desc = extractArg('--description');
-  if (name == null || org == null || desc == null) {
+  if (name == null || desc == null) {
     _throwArguments();
   }
   _renameDirectory(_defaultName, name);
