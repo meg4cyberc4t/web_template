@@ -1,3 +1,6 @@
+// Code has been taken from here and modified:
+// https://github.com/PlugFox/template/blob/master/tool/dart/rename_project.dart
+
 import 'dart:io' as io;
 
 import 'package:collection/collection.dart';
