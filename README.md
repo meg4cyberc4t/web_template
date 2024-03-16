@@ -2,6 +2,8 @@
 
 Custom template for creating a standalone PWA using Flutter.
 
+![Example of Website](.github/readme/example.png)
+
 # What has already been created:
 
 - [Localizations](lib/src/common/localizations/intl_en.arb)
