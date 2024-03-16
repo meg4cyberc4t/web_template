@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_template/src/common/environment/environment_store.dart';
 import 'package:web_template/src/common/localizations/localizations_state_mixin.dart';
 import 'package:web_template/src/common/navigation/router_state_mixin.dart';
 import 'package:web_template/src/features/initialization/data/dependencies.dart';
@@ -16,13 +17,21 @@ class MaterialContext extends StatefulWidget {
 
 class _MaterialContextState extends State<MaterialContext>
     with RouterStateMixin, LocalizationsStateMixin {
+  late final IEnvironmentStore _environmentStore;
+
+  @override
+  void initState() {
+    _environmentStore = Dependencies.of(context).environmentStore;
+    super.initState();
+  }
+
   @override
   Widget build(final BuildContext context) => MaterialApp.router(
         restorationScopeId: 'application',
         routerConfig: router.config,
         onGenerateTitle: (final context) => onGenerateTitle(
           context.localizations,
-          Dependencies.of(context).environmentStore.flavor,
+          _environmentStore.flavor,
         ),
         supportedLocales: localizationDelegate.supportedLocales,
         localizationsDelegates: localizationsDelegate,
@@ -36,8 +45,8 @@ class _MaterialContextState extends State<MaterialContext>
               /// increase or decrease the font for accessibility,
               /// so as not to break the layout
               textScaler: mediaQueryData.textScaler.clamp(
-                minScaleFactor: 0.8,
-                maxScaleFactor: 1.4,
+                minScaleFactor: _environmentStore.scaleFactor.min,
+                maxScaleFactor: _environmentStore.scaleFactor.max,
               ),
             ),
             child: child ?? const SizedBox.shrink(),

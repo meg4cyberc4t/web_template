@@ -6,7 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:web_template/src/common/app_metadata/app_metadata.dart';
 import 'package:web_template/src/common/application/application.dart';
-import 'package:web_template/src/common/config/config.dart';
+import 'package:web_template/src/common/environment/environment_store.dart';
 import 'package:web_template/src/common/logger/logger.dart';
 import 'package:web_template/src/common/logger/observers/bloc_observer.dart';
 import 'package:web_template/src/features/initialization/data/dependencies.dart';
@@ -52,7 +52,7 @@ final class AppRunner {
   Future<Dependencies> _$initializationDependencies() async {
     Bloc.observer = const LoggerBlocObserver();
 
-    final environmentStore = EnvironmentStore();
+    const environmentStore = EnvironmentStore();
 
     const flutterSecureStorage = FlutterSecureStorage();
 

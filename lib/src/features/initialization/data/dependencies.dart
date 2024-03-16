@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart' show BuildContext;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:web_template/src/common/app_metadata/app_metadata.dart';
-import 'package:web_template/src/common/config/config.dart';
+import 'package:web_template/src/common/environment/environment_store.dart';
 import 'package:web_template/src/features/initialization/widget/inherited_dependencies.dart';
 
 /// {@template Dependencies}

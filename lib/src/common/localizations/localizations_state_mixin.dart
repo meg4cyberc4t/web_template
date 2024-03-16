@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:web_template/src/common/config/config.dart';
+import 'package:web_template/src/common/environment/environment_store.dart';
 import 'package:web_template/src/common/localizations/generated/l10n.dart';
 
 /// The mixing LocalizationsStateMixin provides the functionality for

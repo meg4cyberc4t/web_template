@@ -8,6 +8,9 @@ abstract interface class IEnvironmentStore {
 
   /// The current [EnvironmentFlavor] of a running application.
   abstract final EnvironmentFlavor flavor;
+
+  /// Getting restrictions for the [scaleFactor] from the config.
+  abstract final ({double min, double max}) scaleFactor;
 }
 
 /// {@template IEnvironmentStore}
@@ -15,13 +18,29 @@ abstract interface class IEnvironmentStore {
 /// {@endtemplate}
 final class EnvironmentStore implements IEnvironmentStore {
   /// {@macro IEnvironmentStore}
-  EnvironmentStore();
+  const EnvironmentStore();
 
   @override
   EnvironmentFlavor get flavor => EnvironmentFlavor.fromString(
         const String.fromEnvironment(
           'ENVIRONMENT',
           defaultValue: 'PRODUCTION',
+        ),
+      );
+
+  @override
+  ({double min, double max}) get scaleFactor => (
+        min: double.parse(
+          const String.fromEnvironment(
+            'MIN_SCALE_FACTOR',
+            defaultValue: '0.8',
+          ),
+        ),
+        max: double.parse(
+          const String.fromEnvironment(
+            'MAX_SCALE_FACTOR',
+            defaultValue: '1.4',
+          ),
         ),
       );
 }
