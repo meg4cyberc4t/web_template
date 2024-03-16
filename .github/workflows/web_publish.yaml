@@ -1,0 +1,59 @@
+name: Build and deploy to pages
+
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build_and_publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Setup FVM
+        uses: kuhnroyal/flutter-fvm-config-action@v1
+        id: fvm-config-action
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        id: setup-flutter
+        with:
+          flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+          channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
+          architecture: x64
+
+      - name: Install Dependencies
+        run: |
+          flutter config --no-analytics
+          flutter pub get
+
+      - name: build
+        run: flutter build web --dart-define-from-file config/config_production.json --web-renderer skwasm --pwa-strategy offline-first --base-href /web_template --release
+
+      - run: |
+          cd build/web
+          git init
+          git config --global user.email github-actions[bot]@users.noreply.github.com
+          git config --global user.name github-ci[bot]
+          git status
+          git remote add origin https://${{secrets.TOKEN}}@github.com/meg4cyberc4t/webpage.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "Deploy to pages"
+          git push origin gh-pages -f
