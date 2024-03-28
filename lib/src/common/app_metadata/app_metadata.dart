@@ -1,5 +1,4 @@
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:web/helpers.dart';
 import 'package:web/web.dart' as html show window;
 
 /// {@template AppMetadata}
