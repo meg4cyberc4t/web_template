@@ -7,7 +7,8 @@ import 'package:collection/collection.dart';
 import 'package:path/path.dart' as p;
 
 const String _defaultName = 'web_template';
-const String _defaultDescription = 'web_template_description';
+const String _defaultDescription =
+    'Custom template for creating a standalone PWA using Flutter';
 
 /// dart run tools/rename_project.dart --name="yourname" --description="yourdescription"
 void main([final List<String>? args]) {
