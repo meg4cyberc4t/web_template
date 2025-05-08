@@ -22,11 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "language": MessageLookupByLibrary.simpleMessage("Russian"),
-        "languageCode": MessageLookupByLibrary.simpleMessage("ru"),
-        "localeCode": MessageLookupByLibrary.simpleMessage("ru_RU"),
-        "title": MessageLookupByLibrary.simpleMessage("Web Template"),
-        "titleOfDevelopment":
-            MessageLookupByLibrary.simpleMessage("Web Template Development")
-      };
+    "language": MessageLookupByLibrary.simpleMessage("Russian"),
+    "languageCode": MessageLookupByLibrary.simpleMessage("ru"),
+    "localeCode": MessageLookupByLibrary.simpleMessage("ru_RU"),
+    "title": MessageLookupByLibrary.simpleMessage("Web Template"),
+    "titleOfDevelopment": MessageLookupByLibrary.simpleMessage(
+      "Web Template Development",
+    ),
+  };
 }
