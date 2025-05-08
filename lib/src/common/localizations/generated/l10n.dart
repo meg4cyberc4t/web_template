@@ -18,17 +18,20 @@ class GeneratedLocalization {
   static GeneratedLocalization? _current;
 
   static GeneratedLocalization get current {
-    assert(_current != null,
-        'No instance of GeneratedLocalization was loaded. Try to initialize the GeneratedLocalization delegate before accessing GeneratedLocalization.current.');
+    assert(
+      _current != null,
+      'No instance of GeneratedLocalization was loaded. Try to initialize the GeneratedLocalization delegate before accessing GeneratedLocalization.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<GeneratedLocalization> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,54 +44,38 @@ class GeneratedLocalization {
 
   static GeneratedLocalization of(BuildContext context) {
     final instance = GeneratedLocalization.maybeOf(context);
-    assert(instance != null,
-        'No instance of GeneratedLocalization present in the widget tree. Did you add GeneratedLocalization.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of GeneratedLocalization present in the widget tree. Did you add GeneratedLocalization.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
   static GeneratedLocalization? maybeOf(BuildContext context) {
     return Localizations.of<GeneratedLocalization>(
-        context, GeneratedLocalization);
+      context,
+      GeneratedLocalization,
+    );
   }
 
   /// `en_US`
   String get localeCode {
-    return Intl.message(
-      'en_US',
-      name: 'localeCode',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('en_US', name: 'localeCode', desc: '', args: []);
   }
 
   /// `en`
   String get languageCode {
-    return Intl.message(
-      'en',
-      name: 'languageCode',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('en', name: 'languageCode', desc: '', args: []);
   }
 
   /// `English`
   String get language {
-    return Intl.message(
-      'English',
-      name: 'language',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('English', name: 'language', desc: '', args: []);
   }
 
   /// `Web Template`
   String get title {
-    return Intl.message(
-      'Web Template',
-      name: 'title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Web Template', name: 'title', desc: '', args: []);
   }
 
   /// `Web Template Development`
